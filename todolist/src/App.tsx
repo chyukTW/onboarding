@@ -1,8 +1,12 @@
+import TaskInputs from "./components/TaskInputs";
+import Tasks from "./components/Tasks";
+
 function App() {
   return (
-    <div>
-      Hello
-    </div>
+    <>
+      <TaskInputs />
+      <Tasks />
+    </>
   );
 }
 
