@@ -1,12 +1,14 @@
 # About Mocking
 
+
 ## About Mocking
 
 Jest는 자바스크립트 테스팅 프레임워크로 간단한 설정만으로도 테스트를 실행할 수 있다. 또한 풍부한 matcher를 제공하고 다른 라이브러리를 설치할 필요없이 Mocking할 수 있는 기능을 제공한다. Mocking이란 특정 함수의 실제 구현을 가짜로 대체하는 기법을 말하며, 주로 테스트하려는 코드가 의존하고 있는 외부 모듈이나 함수등을 가짜로 구현하고자 할 때 사용한다. 가짜 객체를 이용함으로써 외부와의 의존 관계를 끊고 독립적인 테스트를 작성할 수 있게 된다. 만약 의존하고 있는 실제 코드를 사용하여 테스트를 작성하게 되면 특정 기능만 분리하여 테스트하겠다는 단위 테스트의 목적에도 부합하지 않게 된다. mocking을 이용하면 더 가볍고 빠르고, 항상 동일한 결과를 내는 테스트를 작성할 수 있다.
 
+
 ## Jest.fn()
 
-jest.fn()으로 간단하게 가짜 함수를 생성할 수 있다.
+__jest.fn()__으로 간단하게 가짜 함수를 생성할 수 있다.
 
 ```jsx
 const plus = jest.fn();
@@ -21,7 +23,8 @@ describe('target', () => {
 // 리턴 값을 정해주지 않으면 undefined를 리턴한다.
 ```
 
-jest.fn(callback)
+
+__jest.fn(callback)__
 
 : 인자로 콜백을 넣어 원하는 값을 리턴하게 하거나
 
@@ -37,7 +40,8 @@ describe('target', () => {
 // 결과: PASS
 ```
 
-jest.fn().mockReturnValue(value)
+
+__jest.fn().mockReturnValue(value)__
 
 : 지정된 값을 리턴하도록 할 수 있음
 
@@ -53,7 +57,8 @@ describe('target', () => {
 // 결과: PASS
 ```
 
-jest.fn().mockReturnValueOnce(value)
+
+__jest.fn().mockReturnValueOnce(value)__
 
 : 호출할 때마다 다른 결과를 리턴하는 것도 가능
 
@@ -79,9 +84,10 @@ describe('target', () => {
 // 결과: PASS
 ```
 
-jest.fn().mockImplementation(fn)
 
-: 함수를 즉석에서 통째로 재구현하는 방법으로 케이스마다 다른 가짜 결과를 이용해야 할  때 유용함
+__jest.fn().mockImplementation(fn)__
+
+: 함수를 즉석에서 통째로 재구현하는 방법으로 케이스마다 다른 가짜 결과를 이용해야 할 때 유용함
 
 ```jsx
 import * authUtil from './utils/authUtil';
@@ -109,7 +115,8 @@ it('로그인 상태라면, 로그아웃 텍스트를 보여준다.', () => {
 });
 ```
 
-jest.fn().mockResolvedValue() / jest.fn().mockRejectedValue()
+
+__jest.fn().mockResolvedValue() / jest.fn().mockRejectedValue()__
 
 : 프라미스 객체 리턴할 때 사용
 
@@ -124,6 +131,7 @@ test('async test', async () => {
   await asyncMock(); // throws 'Async error message'
 });
 ```
+
 
 ## 비동기 함수 mocking
 
@@ -150,7 +158,9 @@ it('returns random advice', async () => {
 
 [https://jestjs.io/docs/asynchronous](https://jestjs.io/docs/asynchronous)
 
-그러나 만약 실제 API를 검증하기 위한 테스트가 아니라면, 테스트가 돌아갈 때마다 서버에 불필요한 요청을 하게 된다. 비동기 로직이 관심사가 아니라면 이를 mocking하여 관심있는 부분만 독립적으로 테스트할 수 있다.
+
+그러나 만약 실제 API를 검증하기 위한 테스트가 아니라면, 테스트가 돌아갈 때마다 서버에 불필요한 요청을 하게 된다.
+비동기 로직이 관심사가 아니라면 이를 mocking하여 관심있는 부분만 독립적으로 테스트할 수 있다.
 
 ```jsx
 // target.test.js
@@ -187,6 +197,7 @@ describe('target', () => {
 
 // 결과: PASS
 ```
+
 
 ## 모듈 모킹
 
@@ -229,13 +240,15 @@ describe('examUtil', () => {
 // 결과: PASS
 ```
 
-jest.mock(moduleName)로 모듈 전체를 모킹할 수 있음
+
+__jest.mock(moduleName)__로 모듈 전체를 모킹할 수 있음
 
 * 이름이 아닌 파일 경로에서 import해주고 있다면 파일 경로를 똑같이 넣어주면 됨
 
 ```jsx
 jest.mock('./examUtil');
 ```
+
 
 리턴 값을 정해주지 않으면 undefined를 리턴함
 
@@ -270,7 +283,8 @@ describe('examUtil', () => {
 // 결과: FAIL
 ```
 
-jest.requireActual(moduleName)
+
+__jest.requireActual(moduleName)__
 
 : jest.requireActual() 사용하면 실제 모듈을 불러올 수 있는데, 스프레드 연산자를 함께 사용한다면 모킹한 전체 모듈 중 일부는 가짜 값을 리턴하도록 하고, 나머지는 실제 모듈을 이용할 수 있음
 
@@ -304,6 +318,7 @@ describe('examUtil', () => {
 // 결과: PASS
 ```
 
+
 만약 함수 getA()가 다른 값을 리턴하도록 모킹해주고 싶다면,
 
 ```jsx
@@ -329,7 +344,8 @@ describe('examUtil', () => {
 // 결과: PASS
 ```
 
-spy.on(object, methodName)
+
+__spy.on(object, methodName)__
 
 : 만약 실제 구현을 대체하지 않고, 함수의 호출 여부나 어떻게 호출되었는지만을 알고 싶다면 스파이를 붙일 수 있다. 기본적으로 실제 구현을 따라가지만, 필요에 따라 특정 구현을 mocking하고 다시 복원시키는 것도 가능함
 
@@ -357,7 +373,8 @@ describe('examUtil', () => {
 // 결과: PASS
 ```
 
-함수 모킹했다가 다시 복원시키기
+
+__함수 모킹했다가 다시 복원시키기__
 
 : 유연한 방식으로 mocking 가능, afterAll() 등을 불필요하게 사용하지 않아도 됨
 
@@ -382,9 +399,3 @@ describe('examUtil', () => {
 	// ...
 });
 ```
-
-## Mock 정리하기
-
-테스트 케이스 내에서 사용했던 Mock이 다음 테스트 케이스에 영향을 줄 수 있음
-
-: 기본 세팅에 적용이 되어 있는듯?
