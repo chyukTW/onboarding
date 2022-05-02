@@ -243,7 +243,7 @@ describe('examUtil', () => {
 
 __jest.mock(moduleName)__로 모듈 전체를 모킹할 수 있음
 
-* 이름이 아닌 파일 경로에서 import해주고 있다면 파일 경로를 똑같이 넣어주면 됨
+: 이름이 아닌 파일 경로에서 import해주고 있다면 파일 경로를 똑같이 넣어주면 됨
 
 ```jsx
 jest.mock('./examUtil');
