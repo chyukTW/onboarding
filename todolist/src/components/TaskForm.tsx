@@ -1,23 +1,25 @@
 import React, { useState } from "react";
+import { addTask } from "../apollo/stores/tasks";
 
-const TaskInputs = () => {
-  const [todoValues, setTodoValues] = useState('');
+const TaskForm = () => {
+  const [taskValue, setTaskValue] = useState('');
 
   const handleSubmitTodoForm = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(e.target);
+    addTask(taskValue);
+    setTaskValue('');
   }
 
   const handleChangeTodoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodoValues(e.target.value);
+    setTaskValue(e.target.value);
   };
 
   return (
     <form onSubmit={handleSubmitTodoForm}>
-      <input type="text" onChange={handleChangeTodoInput} value={todoValues} />
+      <input type="text" onChange={handleChangeTodoInput} value={taskValue} />
       <button type="submit">submit</button>
     </form>
   )
 };
 
-export default TaskInputs;
+export default TaskForm;

@@ -1,11 +1,11 @@
-import TaskInputs from "./components/TaskInputs";
-import Tasks from "./components/Tasks";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 
 function App() {
   return (
     <>
-      <TaskInputs />
-      <Tasks />
+      <TaskForm />
+      <TaskList />
     </>
   );
 }
