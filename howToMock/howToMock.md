@@ -71,9 +71,9 @@ describe('target', () => {
     console.log(saySomething()); // undefined
 
     saySomething
-			.mockReturnValueOnce('a')
-			.mockReturnValueOnce('b')
-			.mockReturnValue('default');
+	.mockReturnValueOnce('a')
+	.mockReturnValueOnce('b')
+	.mockReturnValue('default');
 
     expect(saySomething()).toBe('a');
     expect(saySomething()).toBe('b');
@@ -258,10 +258,11 @@ import * as examUtil from './examUtil';
 jest.mock('./examUtil');
 
 describe('examUtil', () => {
-	console.log(examUtil.getA()); // undefined
-	console.log(examUtil.getB()); // undefined
-	console.log(examUtil.getC()); // undefined
-	console.log(examUtil.getD()); // undefined
+
+  console.log(examUtil.getA()); // undefined
+  console.log(examUtil.getB()); // undefined
+  console.log(examUtil.getC()); // undefined
+  console.log(examUtil.getD()); // undefined
 
   it('returns "a"', () => {
     expect(examUtil.getA()).toBe('a');
@@ -331,14 +332,12 @@ jest.mock('./examUtil', () => {
 
 describe('examUtil', () => {
   it('returns "a"', () => {
-		examUtil.getA.mockImplementation(() => 'Z');
-
-	  console.log(examUtil.getA()); // Z
-
+    examUtil.getA.mockImplementation(() => 'Z');
+    console.log(examUtil.getA()); // Z
     expect(examUtil.getA()).toBe('Z');
   });
 
-	// ...
+  // ...
 });
 
 // 결과: PASS
@@ -396,6 +395,6 @@ describe('examUtil', () => {
     expect(examUtil.getA()).toStrictEqual('a');
   });
 
-	// ...
+  // ...
 });
 ```
