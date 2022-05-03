@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
-import { Task } from "../apollo/stores/tasks";
 import { DELETE_TASK } from "../graphql/tasks/mutation";
 import { GET_TASKS } from "../graphql/tasks/query";
+import { Task } from "../types/task";
 
 type Props = {
   task: Task;

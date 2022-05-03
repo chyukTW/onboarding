@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { Task } from "../apollo/stores/tasks";
 import { GET_TASKS } from "../graphql/tasks/query";
 
+import { Task } from "../types/task";
 import TaskItem from "./TaskItem";
 
 const TaskList = () => {
