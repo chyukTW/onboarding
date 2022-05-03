@@ -116,7 +116,7 @@ it('로그인 상태라면, 로그아웃 텍스트를 보여준다.', () => {
 ```
 
 
-__jest.fn().mockResolvedValue() / jest.fn().mockRejectedValue()__
+__jest.fn().mockResolvedValue() 또는 jest.fn().mockRejectedValue()__
 
 : 프라미스 객체 리턴할 때 사용
 
@@ -154,7 +154,7 @@ it('returns random advice', async () => {
   });
 ```
 
-이 밖에도 Jest는 비동기 로직을 테스트할 수 있는 여러 방법을 제공하고 있다. (아래 공식문서 링크 참고)
+이 밖에도 여러 방법이 있음 (아래 공식문서 링크 참고)
 
 [https://jestjs.io/docs/asynchronous](https://jestjs.io/docs/asynchronous)
 

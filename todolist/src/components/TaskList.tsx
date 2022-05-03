@@ -11,6 +11,7 @@ const TaskList = () => {
   // 방법 2. useQuery 사용하기,
   // useQuery를 사용하면 query 및 InMemoryCache > typePolicies 작성해줘야 함
   const { data } = useQuery(GET_TASKS);
+  
   const tasks = data.getTasks;
 
   return (

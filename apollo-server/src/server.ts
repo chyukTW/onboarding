@@ -20,7 +20,7 @@ const typeDefs = gql`
     getTask(id: Int!): Task
   }
   type Mutation {
-    addTask(text: String): Task
+    addTask(text: String): Result
     deleteTask(id: Int): Result
     updateTask(id: Int, text: String): Result
   }
@@ -36,12 +36,23 @@ const resolvers = {
     }
   },
   Mutation: {
-    addTask: (_: any, { text }: any) => {
-      return client.task.create({
-        data: {
-          text
+    addTask: async (_: any, { text }: any) => {
+      try {
+        await client.task.create({
+          data: {
+            text
+          }
+        })
+  
+        return {
+          ok: true,
         }
-      })
+      } catch(e) {
+        return {
+          ok: false,
+          error: e
+        }
+      }
     },
     deleteTask: async (_: any, { id }: any) => {
       try{
