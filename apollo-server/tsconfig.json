@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es5",
+    "noImplicitAny": true,
+    "strict": true,
+    "esModuleInterop": true,
+  },
+  "ts-node": {
+    "esm": true
+  },
+  "include": ["./src/**/*"]
+}
