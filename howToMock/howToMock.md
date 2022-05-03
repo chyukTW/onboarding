@@ -8,7 +8,7 @@ Jest는 자바스크립트 테스팅 프레임워크로 간단한 설정만으�
 
 ## Jest.fn()
 
-__jest.fn()__으로 간단하게 가짜 함수를 생성할 수 있다.
+__jest.fn()__ 으로 간단하게 가짜 함수를 생성할 수 있다.
 
 ```jsx
 const plus = jest.fn();
@@ -241,7 +241,7 @@ describe('examUtil', () => {
 ```
 
 
-__jest.mock(moduleName)__로 모듈 전체를 모킹할 수 있음
+__jest.mock(moduleName)__ 로 모듈 전체를 모킹할 수 있음
 
 : 이름이 아닌 파일 경로에서 import해주고 있다면 파일 경로를 똑같이 넣어주면 됨
 
