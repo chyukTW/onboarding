@@ -5,10 +5,7 @@ import { Task } from "../types/task";
 import TaskItem from "./TaskItem";
 
 const TaskList = () => {
-  const { loading, error, data } = useQuery(GET_TASKS, {
-    fetchPolicy: "cache-and-network",
-    nextFetchPolicy: "cache-only"
-  });
+  const { loading, error, data } = useQuery(GET_TASKS);
 
   if (loading) return <p>Loading...</p>;
 
@@ -17,8 +14,6 @@ const TaskList = () => {
   const tasks = data.getTasks;
 
   return (
-    <>
-    {/* <button type='button' onClick={()=> refetch()}>refetch!</button> */}
     <ul>
       {
         tasks && tasks.map((task: Task) => {
@@ -26,7 +21,6 @@ const TaskList = () => {
         })
       }
     </ul>
-    </>
   )
 };
 
