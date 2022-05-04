@@ -6,6 +6,8 @@ export const GET_TASKS = gql`
     getTasks {
       id
       text
+      updatedAt
+      updatedAtString @client
     }
   }
 `;
