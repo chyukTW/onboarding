@@ -1,6 +1,18 @@
-import { ApolloServerPluginLandingPageGraphQLPlayground as playGround } from "apollo-server-core";
-import { ApolloServer, gql } from 'apollo-server';
+import express from "express";
 import { PrismaClient } from "@prisma/client";
+import { ApolloServer, gql } from 'apollo-server-express';
+import { 
+  ApolloServerPluginLandingPageGraphQLPlayground as playGround,
+  ApolloServerPluginDrainHttpServer 
+} from "apollo-server-core";
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { useServer } from 'graphql-ws/lib/use/ws';
+import { PubSub } from 'graphql-subscriptions';
+import { createServer } from 'http';
+import { WebSocketServer } from 'ws';
+import faker from '@faker-js/faker';
+
+const pubsub = new PubSub();
 
 const client = new PrismaClient();
 
@@ -23,6 +35,9 @@ const typeDefs = gql`
     addTask(text: String): Result
     deleteTask(id: Int): Result
     updateTask(id: Int, text: String): Result
+  }
+  type Subscription {
+    messageAdded: String
   }
 `;
 
@@ -105,17 +120,38 @@ const resolvers = {
         }
       }
     },
-  }
+  },
+  Subscription: {
+    messageAdded: {
+      subscribe: () => pubsub.asyncIterator("messageAdded"),
+    },
+  },
 };
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [
-    playGround(),
-  ]
-});
+setInterval(() => {
+  pubsub.publish("messageAdded", {
+    messageAdded: faker.lorem.sentence(),
+  });
+}, 1000);
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+async function startServer() {
+  const apollo = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [
+      playGround(),
+    ],
+  });
+
+  await apollo.start();
+
+  const app = express();
+
+  apollo.applyMiddleware({ app });
+
+  await new Promise<void>(r => app.listen({ port: 4000 }, r));
+
+  console.log(`🚀 Server ready at http://localhost:4000${apollo.graphqlPath}`);
+}
+
+startServer();
