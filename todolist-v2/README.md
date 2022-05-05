@@ -42,7 +42,7 @@ root.render(
 ```
 <br/>
 
-## 쿼리  
+## Query  
 <br/>
 useQuery로 쿼리 날리기
 : useQuery는 컴포넌트가 마운팅될 때 호출된다.
@@ -134,7 +134,7 @@ const { loading, error, data } = useQuery(GET_TASKS, {
 ![스크린샷 2022-05-05 오전 11 18 33](https://user-images.githubusercontent.com/103919739/166855765-3b4eb31e-94af-40d6-8596-4c15aecdd299.png)  
 <br/>
 
-## 뮤테이션  
+## Mutation  
 <br/>  
 
 useMutation으로 뮤테이션 요청
@@ -185,7 +185,7 @@ refetchQueries 옵션을 사용하면 뮤테이션 후에 특정 쿼리를 refet
 ```
 <br/>
 
-## 로컬 전용 필드  
+## Local-only fields  
 <br/>
 
 서버에 정의되지 않은 로컬 전용 필드를 정의할 수 있음  
@@ -247,4 +247,123 @@ const cache = new InMemoryCache({
 
 // ...
 ```
-  
+<br/>
+
+
+## Subscription  
+<br/>
+
+### 아폴로 클라이언트에 웹소켓 연결
+<br/>
+
+graphql-ws 설치
+> yarn add graphql-ws
+<br/>
+
+```jsx
+// src/apollo/client.ts
+// ...
+
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
+
+const wsLink = new GraphQLWsLink(createClient({
+  url: 'ws://localhost:4000/graphql', // 백엔드에서 미리 만들어 준 엔드포인트
+}));
+
+// ...
+```
+<br/>
+
+모든 오퍼레이션 타입이 GraphQLWsLink을 사용할 수 있지만,
+쿼리나 뮤테이션은 HTTP를 이용하는 것이 효율적임
+<br>
+
+httpLink도 생성
+``` jsx
+// src/apollo/client.ts
+// ...
+
+import { HttpLink } from '@apollo/client';
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4000/graphql'
+});
+
+// ...
+```
+<br/>
+
+
+split 메서드로 subscription이 아닐 때는 httpLink를 사용하도록 설정
+```jsx
+// src/apollo/client.ts
+// ...
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
+
+// ...
+```
+<br/>
+
+
+클라이언트 uri에 splitLink 연결
+```jsx
+// src/apollo/client.ts
+// ...
+
+const client = new ApolloClient({
+  link: splitLink,
+  cache: new InMemoryCache()
+});
+
+// ...
+```
+<br/>
+
+
+이제 구독을 위한 쿼리문(?)을 작성해주고
+
+```jsx
+
+export const WORD_SUBSCRIPTION = gql`
+  subscription {
+    randomWord 
+  }
+`;
+
+```
+<br/>
+
+
+Word 컴포넌트에서 랜덤 단어를 받기 위한 구독 요청 
+useSubscription hook을 사용
+
+```jsx
+import { useSubscription } from "@apollo/client";
+import { WORD_SUBSCRIPTION } from "../graphql/words/subscription";
+
+const Word = () => {
+  const { data, loading } = useSubscription(WORD_SUBSCRIPTION);
+
+  // console.log(data);
+
+  return (
+    <div>Random Word: {!loading && data?.randomWord}</div>
+  )
+};
+
+export default Word;
+```
+<br/>
+
