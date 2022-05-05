@@ -88,7 +88,7 @@ export default TaskList;
 import {gql} from '@apollo/client';
 
 export const GET_TASKS = gql`
-	query GetTasks {
+query GetTasks {
     getTasks {
       id
       text
@@ -195,7 +195,7 @@ refetchQueries 옵션을 사용하면 뮤테이션 후에 특정 쿼리를 refet
 ```jsx
 // src/graphql/tasks/query.ts
 export const GET_TASKS = gql`
-	query GetTasks {
+query GetTasks {
     getTasks {
       id
       text
