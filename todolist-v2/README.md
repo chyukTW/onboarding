@@ -368,4 +368,4 @@ export default Word;
 <br/>
 
 ![image](https://user-images.githubusercontent.com/103919739/166884001-c26aa136-1be2-4262-85c1-a513a3919eb8.png)  
-콘솔을 찍어보면 1초마다 내뱉는 단어를 확인할 수 
+콘솔을 찍어보면 1초마다 내뱉는 단어를 확인할 수 있음
