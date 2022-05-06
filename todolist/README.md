@@ -8,7 +8,7 @@
 
 makeVar 메서드로 반응 변수 생성 (인자로 초기값을 전달할 수 있음)
 
-```jsx
+```tsx
 // src/apollo/stores/tasks.ts
 
 import { makeVar } from '@apollo/client';
@@ -33,7 +33,7 @@ export default tasksVar;
 import { gql } from '@apollo/client';
 
 export const GET_TASKS = gql`
-	query GetTasks {
+query GetTasks {
     getTasks @client
   }
 `;
