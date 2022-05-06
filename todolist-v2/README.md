@@ -134,6 +134,14 @@ const { loading, error, data } = useQuery(GET_TASKS, {
 ![스크린샷 2022-05-05 오전 11 18 33](https://user-images.githubusercontent.com/103919739/166855765-3b4eb31e-94af-40d6-8596-4c15aecdd299.png)  
 <br/>
 
+캐시에 있는 Root Query를 살펴보면, '__typename: id'의 모양으로 정규화된 task를 참조하고 있는 것을 확인할 수 있다.
+그런데 user data의 경우 애초애 id를 생성해주지 않았기 때문에 참조되지 않은 상태로 그대로 들어간 모양이다.
+![image](https://user-images.githubusercontent.com/103919739/167068399-d44d63de-1332-47ab-94c8-ab8e6db57c28.png)  
+
+key fields API를 통해 어떤 값을 
+
+
+
 ## Mutation  
 <br/>  
 
