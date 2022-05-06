@@ -8,7 +8,8 @@ const resolvers = {
       return client.task.findUnique({where: {
         id
       }});
-    }
+    },
+    getUsers: () => client.user.findMany()
   },
   Mutation: {
     addTask: async (_: any, { text }: any) => {
@@ -78,6 +79,35 @@ const resolvers = {
           ok: false,
           error: e
         }
+      }
+    },
+    createUser: async (_: any, { name }: any) => {
+      
+      try {
+        const user = await client.user.findUnique({where: { name }});
+  
+        if(user){
+          return {
+            ok: false,
+            error: 'already taken'
+          }
+        };
+
+        await client.user.create({
+          data: {
+            name
+          }
+        });
+  
+        return {
+          ok: true,
+        };
+
+      } catch(e) {
+        return {
+          ok: false,
+          error: e
+        };
       }
     },
   },

@@ -41,6 +41,9 @@ const cache = new InMemoryCache({
         }
       },  
     },
+    User: {
+      keyFields: ['name']
+    }
   },
 });
 
