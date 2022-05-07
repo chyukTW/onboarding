@@ -391,4 +391,39 @@ export default Word;
 ![image](https://user-images.githubusercontent.com/103919739/166884001-c26aa136-1be2-4262-85c1-a513a3919eb8.png)  
 콘솔을 찍어보면 1초마다 내뱉는 단어를 확인할 수 있음
 
-* 컴포넌트가 언마운트되면 자동으로 unsubscribe 됨
+* 컴포넌트가 언마운트되면 자동으로 unsubscribe 됨  
+
+unsubscribe가 잘 되는지 확인해보기
+토글 버튼을 만들어주고,
+
+```tsx
+
+import { useState } from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import Word from "./components/Word";
+
+function App() {
+  const [ toggle, setToggle ] = useState(false);
+
+  const handleClickToggleButton = () => {
+    setToggle(prev => !prev);
+  }
+
+  return (
+    <>
+      <TaskForm />
+      <TaskList />
+      <button type="button" onClick={handleClickToggleButton}>{toggle ? 'unsubscribe' : 'subscribe'} word</button>
+      {toggle && <Word />}
+    </>
+  );
+}
+
+export default App;
+```
+
+버튼 클릭  
+
+![image](https://user-images.githubusercontent.com/103919739/167245078-c47343e1-93ae-4872-916d-4ba196d401ed.png)  
+크롬 개발자
