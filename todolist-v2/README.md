@@ -422,16 +422,17 @@ function App() {
 
 export default App;
 ```
+<br />
 
-버튼 클릭하면 subscribe/unsubscribe를 하도록 구현
-
+버튼 클릭하면 subscribe/unsubscribe를 하도록 구현  
 ![image](https://user-images.githubusercontent.com/103919739/167245078-c47343e1-93ae-4872-916d-4ba196d401ed.png)  
+<br />
 
-버튼을 클릭하고 개발자 도구를 확인해보면,
 
-![image](https://user-images.githubusercontent.com/103919739/167245241-b187d1f9-f3c3-4dce-9902-e6fdc8155747.png)  
-HTTP 프로토콜 상에서 먼저 handshaking이 진행되고,  
-message tab을 확인해보면,  
+버튼을 클릭하고 개발자 도구를 확인해보면,  
+![image](https://user-images.githubusercontent.com/103919739/167245241-b187d1f9-f3c3-4dce-9902-e6fdc8155747.png)  <br />
+
+HTTP 프로토콜 상에서 먼저 handshaking이 진행되고 message tab을 확인하면,
 ![스크린샷 2022-05-07 오후 4 43 37](https://user-images.githubusercontent.com/103919739/167245162-9ff33d7a-8e8d-4ce2-8679-dee2bf3fd2cb.png)  
 
 1. {"type": "connection_init"}과 {"type": "connection_ack"}라는 데이터를 주고 받고,
@@ -441,6 +442,7 @@ message tab을 확인해보면,
 
 버튼을 한번 더 누르면,complete type이 포함된 데이터를 마지막으로 받고 unsubscribe된다.  
 ![스크린샷 2022-05-07 오후 4 57 11](https://user-images.githubusercontent.com/103919739/167245536-6bbd1e3b-f044-4e80-ae36-c01551dbf6a5.png)  
+<br />
 
 
 
