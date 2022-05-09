@@ -190,6 +190,8 @@ SSE는 서버가 클라이언트에 비동기적으로 데이터를 푸시할 �
 
 Reference
 
+[https://developer.mozilla.org/ko/](https://developer.mozilla.org/ko/)
+
 [https://ko.javascript.info/](https://ko.javascript.info/long-polling#ref-6396)
 
 [https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a](https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a)
