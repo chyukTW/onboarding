@@ -134,6 +134,11 @@ app.listen(PORT, ()=> {
 ```
 <br />
 
+## Streaming
+
+클라이언트의 요청에 대한 응답을 완료하지 않은 상태에서 데이터를 계속 내려받는 방식. 응답을 받으면 다시 연결 요청을 하는 Long-polling과는 달리, 연결을 유지한 상태에서 서버의 데이터를 전송받기 때문에 연결을 맺는 과정에서 발생하는 부담이 줄어든다. 연결이 유지된 상태에서 서버로부터 데이터를 받는 경우에 유리한 방식이다. 거의 단방향 통신이라고 할 수 있어 클라이언트의 데이터 전송이 요구되는 경우에는 적합하지 않다.  
+<br />
+
 ## WebSocket
 
 웹소켓 프로토콜은 양방향 통신을 위한 단일 TCP 연결 방식을 제공한다. 이를 통해 서버와 브라우저 간 연결을 유지한 상태로 서로 간에 데이터를 교환할 수 있다. 데이터 전송은 추가적인 HTTP 요청이 필요하지 않고 기존의 80, 443 포트로 접속한다는 특징이 있다.
@@ -170,7 +175,16 @@ app.listen(PORT, ()=> {
 
 - 핸드셰이크가 끝나면 프로토콜이 웹소켓으로 전환되고 데이터 전송 시작
 - 웹소켓 통신은 frame이라는 데이터 조각을 사용해 이뤄진다.
-- 참고로 WebSocket.send() 메서드는 텍스트나 바이너리 데이터만 전송 가능
+- 참고로 WebSocket.send() 메서드는 텍스트나 바이너리 데이터만 전송 가능  
+<br />
+
+
+## SSE(Server Sent Event)
+
+SSE는 서버가 클라이언트에 비동기적으로 데이터를 푸시할 수 있는 메커니즘이다. 사용자가 항상 최신의 정보를 유지해야 하는 환경에서 사용하기에 좋다. SSE는 polling(short, long)과 streaming을 모두 지원하며 서버와의 연결을 유지하며, 만약 연결이 끊어지는 경우 자동으로 다시 연결을 시도한다. 웹 소켓과는 달리 단방향 통신을 수행하며 별도의 프로토콜을 사용하지 않고 HTTP을 그대로 사용한다. 대신 HTTP의 body를 특정 포맷으로 작성해야 하고, Content-Type에 application/event-stream을 명시해줘야 한다. HTTP의 버젼에 따라 최대 동시 접속 수가 달라지는데, 1의 경우 6개, 2의 경우 200개의 연결이 동시에 가능하다. SSE는 단방향의 발행/구독 모델이라고 할 수 있고 접속이 끊어지면 자동으로 재접속을 요청한다는 특징이 있다.  
+
+사용 예시: 트위터 feed, 페이스북 push 알람  
+<br />
 
 ---
 
@@ -181,3 +195,7 @@ Reference
 [https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a](https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a)
 
 [https://datatracker.ietf.org/doc/html/rfc6455](https://datatracker.ietf.org/doc/html/rfc6455)
+
+[https://codeburst.io/polling-vs-sse-vs-websocket-how-to-choose-the-right-one-1859e4e13bd9](https://codeburst.io/polling-vs-sse-vs-websocket-how-to-choose-the-right-one-1859e4e13bd9)
+
+
