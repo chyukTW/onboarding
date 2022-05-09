@@ -1,12 +1,13 @@
-# 🕳웹 소켓
+# 웹 소켓  
 
 웹 소켓 프로토콜은 클라이언트와 서버 간에 양방향으로 통신할 수 있는 방법을 제공한다. HTTP 프로토콜은 클라이언트가 요청을 보내면 서버가 응답하는 방식의 단방향 통신을 한다. 서버는 클라이언트에 먼저 연결을 요청할 수 없고 클라이언트가 요청하지 않은 데이터를 보낼 수 없다. 이런 방식으로 통신하는 전통적인 서버/클라이언트 모델에서는 실시간 어플리케이션을 구현하는 것이 쉽지 않았다. 과거에는 클라이언트와 서버 간의 연결을 유지하기 위해(것처럼 보이기 위해) polling, long-polling과 같은 여러 통신 방식을 사용해왔다.
+<br />
 
 ## Polling
 
 Polling은 주기적으로 서버에 요청을 보내서 일정한 간격의 응답을 받는 방식이다. 서버와 클라이언트의 구현이 비교적 쉽고 요청의 크기가 작거나 빈번한 업데이트가 요구되지 않는 상황이라면 괜찮은 방법이 될 수도 있다. 그러나 실시간 어플리케이션으로 작동하는 것처럼 구현해야 하는 상황이라면 더 잦은 요청과 응답이 수행되어야 한다. 그 과정에서 전송할 데이터가 없음에도 요청과 응답의 왕복을 강제하기 때문에 불필요한 비용이 발생할 수 있다. 빈번한 업데이트가 요구되거나 요청의 크기가 상당히 크다면 서버 또는 네트워크에 부담을 줄 수 있다. 반대로 폴링의 주기가 너무 길다면 업데이트 지연이 발생할 수 있다.
 
-예제 코드
+예시
 
 ```jsx
 const poll = async ({ fn, validate, interval, maxAttempts }) => {
@@ -29,7 +30,8 @@ const poll = async ({ fn, validate, interval, maxAttempts }) => {
 };
 ```
 
-[https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a](https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a)
+[https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a](https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a)  
+<br />
 
 ## Long Polling
 
@@ -130,19 +132,22 @@ app.listen(PORT, ()=> {
   console.log(`server is listening at localhost:${PORT}`);
 })
 ```
+<br />
 
 ## WebSocket
 
 웹소켓 프로토콜은 양방향 통신을 위한 단일 TCP 연결 방식을 제공한다. 이를 통해 서버와 브라우저 간 연결을 유지한 상태로 서로 간에 데이터를 교환할 수 있다. 데이터 전송은 추가적인 HTTP 요청이 필요하지 않고 기존의 80, 443 포트로 접속한다는 특징이 있다.
 
-웹소켓 프로토콜은 handshake 및 데이터 전송, 이렇게 두 과정으로 구분됨
+웹소켓 프로토콜은 handshake 및 데이터 전송, 이렇게 두 과정으로 구분됨  
+<br />
 
 **핸드셰이크**
 
 - 웹소켓을 생성하면 즉시 연결이 시작된다.
 - 웹소켓 프로토콜을 위한 클라이언트의 첫 요청은 HTTP 프로토콜 상에서 전송된다. 요청 헤더는 아래와 같다.
 
-![스크린샷 2022-05-07 오후 2.57.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/456a74db-836a-454e-a465-758e4861fe60/스크린샷_2022-05-07_오후_2.57.29.png)
+![image](https://user-images.githubusercontent.com/103919739/167349804-ff0a8262-d96f-413a-b1f0-10b8fdcf284a.png)  
+
 
 - Origin - 서버는 클라이언트 오리진을 보고 소켓 통신의 여부 결정
 - Connection: Upgrade - 프로토콜의 변경 요청
@@ -155,9 +160,11 @@ app.listen(PORT, ()=> {
 
 - 최초 요청을 받은 서버는 이에 동의하면, 상태 코드 101이 담긴 응답을 전송
     
-    ![스크린샷 2022-05-07 오후 3.06.30.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/81d58b70-2115-48fa-8934-33fbfe7b6236/스크린샷_2022-05-07_오후_3.06.30.png)
+![image](https://user-images.githubusercontent.com/103919739/167349853-ece40d0e-c214-4913-b7b2-5c81c59f0919.png)  
+
     
 - 브라우저는 서버에서 생성한 Sec-WebSocket-Accept 값을 확인하여 자신이 보낸 요청에 대한 응답인지 확인
+<br />
 
 **데이터 전송**
 
@@ -167,20 +174,10 @@ app.listen(PORT, ()=> {
 
 ---
 
-? 소켓이 [socket.io](http://socket.io) 라이브러리를 의미하는 걸까? 아니면 통신에서의 제너럴한 소켓을 의미하는 걸까? 형철님한테 물어봐야지
-
-subscription과 polling과의 차이는 웹소켓과 polling과의 차이와도 같다.
-
-아마도?
-
-폴링, 롱폴링, 웹소켓 예제를 만드는 것이 좋을까?
-
----
-
 Reference
 
 [https://ko.javascript.info/](https://ko.javascript.info/long-polling#ref-6396)
 
 [https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a](https://levelup.gitconnected.com/polling-in-javascript-ab2d6378705a)
 
-[https://datatracker.ietf.org/doc/html/rfc6455](https://datatracker.ietf.org/doc/html/rfc6455)gi
+[https://datatracker.ietf.org/doc/html/rfc6455](https://datatracker.ietf.org/doc/html/rfc6455)
