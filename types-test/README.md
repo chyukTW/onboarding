@@ -38,7 +38,8 @@
 단위 테스트의 한계
 <br />
 
-![image](https://user-images.githubusercontent.com/103919739/168052802-3419d488-d5f7-4b16-8b84-88884d7c6676.png)  
+ ![unit_vs_integration_tests](https://user-images.githubusercontent.com/103919739/168054224-2d3a08ca-d762-4b23-a1cd-3f308557d192.gif)
+
 <br />
 
 ## 통합 테스트(Integration Test)
