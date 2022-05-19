@@ -1,6 +1,5 @@
 ## Git 충돌 예시 및 해결 방법
 
-### 충돌 예시
 
 1. master branch:  
 ![스크린샷 2022-05-19 오후 6 52 34](https://user-images.githubusercontent.com/103919739/169268488-4cbca081-f7fe-4eb8-86b9-42439bd9f436.png)
