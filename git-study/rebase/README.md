@@ -12,7 +12,8 @@ main 브랜치에 feature 브랜치가 merge가 되는 모습
 main 브랜치에 feature 브랜치를 rebase한 모습  
 ![image](https://user-images.githubusercontent.com/103919739/169433977-7542d87f-413a-4da3-b799-ff8fdc0214b3.png)  
 브랜치의 커밋 순서가 시간 순서대로 합쳐지고 히스토리가 깔끔하게 유지된다.  
-master 브랜치의 마지막 커밋 뒤에 merge 대상이 되는 커밋들이 붙어서 결국 master 브랜치가 재배치(rebase)된다.
+master 브랜치의 마지막 커밋 뒤에 merge 대상이 되는 커밋들이 붙어서 결국 master 브랜치가 재배치(rebase)된다.  
+이후 feature 브랜치를 master 브랜치에 merge하여 HEAD를 맞춰주면 된다.
 
 <br />
 
