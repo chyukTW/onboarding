@@ -1,12 +1,12 @@
 - 변경사항(Changed) 취소
-    - git restore .
-    - git restore /path
+    - ```git restore .```
+    - ```git restore /path```
 - 스테이지(Staged) 취소
-    - git restore —staged .
-    - git restore —staged /path
+    - ```git restore —staged .```
+    - ```git restore —staged /path```
 - 커밋 취소
-    - git reset HEAD~n (HEAD를 n개 커밋만큼 back, 커밋 사라짐 주의)
-    - git reset ${commit_hash::7} (특정 커밋으로 HEAD 되돌리기도 가능)
+    - ```git reset HEAD~n``` (HEAD를 n개 커밋만큼 back, 커밋 사라짐 주의)
+    - ```git reset ${commit_hash::7}``` (특정 커밋으로 HEAD 되돌리기도 가능)
     - 옵션: reset으로 돌아갈 때 어디로 가는지(default: mixed)
         - --soft: add까지 한 상태(Stage에 올라간 상태)
         - --mixed: 변경된 상태(Changed에 올라간 상태)
