@@ -34,11 +34,11 @@ after
 ![스크린샷 2022-05-20 오전 10 52 56](https://user-images.githubusercontent.com/103919739/169434515-418f2a1b-30b4-49e1-bf48-47ffc0bf2d00.png)
 
 1. rebase 시도(1)  
-만약 이 상태에서 rebase를 시도하면 master 브랜치의 마지막 커밋이 공통 조상인 base가 되기 때문에 reabse가 작동하지 않는다.
+만약 이 상태에서 rebase를 시도하면 아직까지 서로 분기되는 커밋이 없기 떄문에 rebase가 작동하지 않는다.  
 ![스크린샷 2022-05-20 오전 10 53 20](https://user-images.githubusercontent.com/103919739/169434683-8ac30f47-e5e4-4304-a174-65c864c95f1e.png)
 
 
-- master브랜치에서도 1개의 변경사항이 커밋된 상황  
+- master브랜치에서도 1개의 변경사항이 커밋된 상황이라면  
 ![스크린샷 2022-05-20 오전 10 54 18](https://user-images.githubusercontent.com/103919739/169434747-7a3c1e46-ed0d-4d54-adf1-6906b78d7cba.png)
 
 2. rebase를 위해 test브랜치 이동
