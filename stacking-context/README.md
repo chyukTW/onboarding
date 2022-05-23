@@ -1,6 +1,8 @@
 # Stacking Context
+<br />
 
 ## 직면했던 문제  
+<br />
 
 팝업을 띄우는 버튼을(빨간색 원) 인풋 안에 위치시켜야 함  
 ![스크린샷 2022-05-23 오후 7 57 10](https://user-images.githubusercontent.com/103919739/169805388-bbb3bee5-07ce-426b-b32d-22e92ea78278.png)  
@@ -40,6 +42,7 @@ position을 absolute로 주어 어렵지 않게 구현할 수 있었지만, 상�
 <br />
 
 ### 상단 팝업과 겹치는 문제를 해결하기 위해 생각했던 방법들  
+<br />
 
 방법 1. 문제가 되는 상단 팝업 position에 3차원 속성을 부여하고 더 높은 z-index 값을 부여  
 -> mui에 의해 지정된 팝업의 위치를 억지로 조정해야 하고 기존 코드를 많이 건드려야 하는 부담이 있음  
@@ -48,6 +51,7 @@ position을 absolute로 주어 어렵지 않게 구현할 수 있었지만, 상�
 <br />
 
 ### 해결
+<br />
 
 기존의 구현을 건드리지 않고 해결할 수 있는 방법을 찾다가 stacking context에 대해 알게 됨  
 결과적으로 부모 요소의 stacking context를 조정해서 해결할 수 있었다.  
@@ -80,6 +84,7 @@ CSS 코드는 부모 요소의 z-index에 0만 넣어주면 됨
 <br />
 
 ## 쌓임 맥락(stacking context)  
+<br />
 
 stacking context는 HTML 요소를 3차원으로 배치시키기 위해 z축을 포함하는 가상의 개념임  
 
@@ -176,8 +181,9 @@ natural stacking order에 따라 뒤에 오는 요소인 parent2의 mid가 자�
 <br />
 
 ## 참고
+<br />
 
-[mdn](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)  
+[MDN](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)  
 [blog](https://erwinousy.medium.com/z-index%EA%B0%80-%EB%8F%99%EC%9E%91%ED%95%98%EC%A7%80%EC%95%8A%EB%8A%94-%EC%9D%B4%EC%9C%A0-4%EA%B0%80%EC%A7%80-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EA%B3%A0%EC%B9%98%EB%8A%94-%EB%B0%A9%EB%B2%95-d5097572b82f)
 
 
