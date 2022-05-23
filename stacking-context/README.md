@@ -8,11 +8,11 @@
 position을 absolute로 주어 어렵지 않게 구현할 수 있었지만, 상단에 다른 팝업이 출력될 때 인풋 안에 있는 버튼이 팝업 위로 드러나는 문제 발생
 ![스크린샷 2022-05-23 오후 7 56 56](https://user-images.githubusercontent.com/103919739/169806501-300fbf2e-b599-461e-9e49-b00b1150a688.png)  
 
-겹치는 이유는 빨간 버튼이 z-index: 1의 값을 갖고 있기 떄문  
-만약 z-index값을 부여하지 않으면 버튼이 인풋 뒤에 가려지게 됨  
+겹치는 이유는 빨간 버튼이 z-index: 1의 값을 갖고 있기 때문인데, 만약 z-index값을 부여하지 않으면 버튼이 인풋 뒤에 가려지게 됨  
 ![스크린샷 2022-05-23 오후 8 12 54](https://user-images.githubusercontent.com/103919739/169807171-6667ed6d-f852-4d26-8c09-bb4b027444cf.png)  
 
 당시에는 stacking order에 대한 내용을 알지 못해서 버튼이 가려지는 이유를 몰랐음  
+
 어쨋든 z-index를 주지 않거나 기본값이나 마찬가지인 auto를 주게 되면 버튼이 가려지기 때문에 1 이상의 값을 줘야 인풋 위로 버튼이 드러나게 됨  
 상단에 출력되는 팝업도 뚫어버린다는 점이 문제...   
 
@@ -37,6 +37,7 @@ position을 absolute로 주어 어렵지 않게 구현할 수 있었지만, 상�
 
 
 ```
+<br />
 
 ### 상단 팝업과 겹치는 문제를 해결하기 위해 생각했던 방법들  
 
@@ -44,6 +45,7 @@ position을 absolute로 주어 어렵지 않게 구현할 수 있었지만, 상�
 -> mui에 의해 지정된 팝업의 위치를 억지로 조정해야 하고 기존 코드를 많이 건드려야 하는 부담이 있음  
 방법 2. 버튼을 3차원 속성이 아닌 static으로 하여 인풋에 넣는 방법  
 -> 편리한 인풋 구현을 위해 Input 공용 컴포넌트를 사용하고 있음, 공용 컴포넌트의 구조를 바꿔야 하는 부담이 있음  
+<br />
 
 ### 해결
 
@@ -75,6 +77,7 @@ CSS 코드는 부모 요소의 z-index에 0만 넣어주면 됨
 }
 
 ```
+<br />
 
 ## 쌓임 맥락(stacking context)  
 
@@ -85,8 +88,9 @@ stacking context는 HTML 요소를 3차원으로 배치시키기 위해 z축을 
 만약 아래와 같은 div 3개가 있다고 가정하고  
 ![스크린샷 2022-05-23 오후 5 05 00](https://user-images.githubusercontent.com/103919739/169812370-61d6c91e-32a7-462f-a12b-7a0f76a9d9c1.png)  
 
+
 마진을 조정하여 서로 겹치게 한다면  
-![스크린샷 2022-05-23 오후 5 05 31](https://user-images.githubusercontent.com/103919739/169812598-4fa58fab-5f31-4edd-b853-b6d80757c516.png) 
+![스크린샷 2022-05-23 오후 5 05 31](https://user-images.githubusercontent.com/103919739/169812598-4fa58fab-5f31-4edd-b853-b6d80757c516.png)  
 사진과 같이 mid가 top을 덮고 bottom이 mid를 덮음  
 이러한 것을 natural stacking order라 함  
 
@@ -160,9 +164,21 @@ natural stacking order에 따라 뒤에 오는 요소인 parent2의 mid가 자�
 더 높은 z-index를 갖는 요소가 더 위에 배치됨
 
 그런데 더 높은 z-index를 갖는 경우에도 위에 배치되지 않는 경우가 있음  
+오른쪽 요소가 99인데 2보다 아래에 배치되는 경우...  
 ![스크린샷 2022-05-23 오후 9 21 26](https://user-images.githubusercontent.com/103919739/169818693-746a68f8-fe5f-4fdd-8e0d-0e908e07884c.png)  
 
+해답은 부모 요소에 있음  
+![스크린샷 2022-05-23 오후 9 21 26](https://user-images.githubusercontent.com/103919739/169819063-eb1dc839-b3f1-48d6-9808-e5ac473c0020.png)  
+위 그림과 같이 부모 요소가 진다면 자식은 이길 수 없음  
 
+자식 요소는 부모 요소의 stacking context에 제한되기 때문에 만약 z-index각 원하는 대로 작동하지 않는다면 부모 요소를 살펴볼 필요가 있음  
+위에서 언급한 문제의 경우 부모 요소의 z-index를 낮추어 자식 요소의 z-index를 제한시켜서 해결함  
+<br />
+
+## 참고
+
+[mdn](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)  
+[blog](https://erwinousy.medium.com/z-index%EA%B0%80-%EB%8F%99%EC%9E%91%ED%95%98%EC%A7%80%EC%95%8A%EB%8A%94-%EC%9D%B4%EC%9C%A0-4%EA%B0%80%EC%A7%80-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EA%B3%A0%EC%B9%98%EB%8A%94-%EB%B0%A9%EB%B2%95-d5097572b82f)
 
 
 
