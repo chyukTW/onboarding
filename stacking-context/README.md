@@ -97,7 +97,7 @@ stacking context는 HTML 요소를 3차원으로 배치시키기 위해 z축을 
 어떤 요소가 다른 stacking context를 갖도록 하려면  
 position 속성에 absolute, relative와 같은 속성을 주어야 함
 
-mid에 relative만 주더라도 context가 형성되고 다른 요소들보다 위에 위치하게 되는 것을 볼 수 있음  
+mid에 relative만 주더라도 새로운 context가 형성되고 다른 요소들보다 위에 위치하게 되는 것을 볼 수 있음  
 <img src="https://user-images.githubusercontent.com/103919739/169813916-fe307013-2813-4303-b82f-d9de49dd33a3.png"  width="400" height="300"/>  
 position 이외에 transform, opacity 등 몇몇 속성도 다른 stacking context를 형성함  
 <br />
@@ -173,7 +173,7 @@ natural stacking order에 따라 뒤에 오는 요소인 parent2의 mid가 자�
 <img src="https://user-images.githubusercontent.com/103919739/169819063-eb1dc839-b3f1-48d6-9808-e5ac473c0020.png"  width="450" height="350"/>  
 만약 부모 요소가 진다면 자식은 이길 수 없음  
 
-자식 요소는 부모 요소의 stacking context에 제한되기 때문에 만약 z-index각 원하는 대로 작동하지 않는다면 부모 요소를 살펴볼 필요가 있다.  
+자식 요소는 부모 요소의 stacking context에 제한되기 때문에 만약 z-index가 원하는 대로 동작하지 않는다면 부모 요소를 살펴볼 필요가 있다.  
 위에서 언급한 문제의 경우 부모 요소의 z-index를 낮춤으로써 자식 요소의 z-index를 제한시켜서 해결할 수 있었다.  
 <br />
 
