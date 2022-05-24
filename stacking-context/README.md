@@ -5,15 +5,15 @@
 <br />
 
 팝업을 출력하기 위한 버튼을(빨간색 원) 인풋 안에 위치시켜야 한다.  
-<img src="https://user-images.githubusercontent.com/103919739/169805388-bbb3bee5-07ce-426b-b32d-22e92ea78278.png"  width="200" height="100"/>
+<img src="https://user-images.githubusercontent.com/103919739/169805388-bbb3bee5-07ce-426b-b32d-22e92ea78278.png"  width="300" height="200"/>
 
 "position: absolute"로 구현할 수 있지만,  
 상단에 있는 다른 팝업이 출력될 때 빨간 버튼이 팝업 위로 드러난다.  
-<img src="https://user-images.githubusercontent.com/103919739/169806501-300fbf2e-b599-461e-9e49-b00b1150a688.png"  width="200" height="100"/>
+<img src="https://user-images.githubusercontent.com/103919739/169806501-300fbf2e-b599-461e-9e49-b00b1150a688.png"  width="300" height="200"/>
 
 겹치는 이유는 빨간 버튼이 z-index: 1의 값을 갖고 있기 때문인데,  
 만약 z-index값을 부여하지 않으면 버튼이 인풋 뒤에 가려지게 됨  
-<img src="https://user-images.githubusercontent.com/103919739/169807171-6667ed6d-f852-4d26-8c09-bb4b027444cf.png"  width="200" height="100"/>
+<img src="https://user-images.githubusercontent.com/103919739/169807171-6667ed6d-f852-4d26-8c09-bb4b027444cf.png"  width="300" height="200"/>
 
 문제 1. z-index를 주지 않는다 -> 인풋에 가려짐  
 문제 2. z-index를 주지 않는다 -> 상단 팝업을 뚫고 나옴  
