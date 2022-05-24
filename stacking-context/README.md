@@ -106,7 +106,7 @@ position 이외에 transform, opacity 등 몇몇 속성도 다른 stacking conte
 <img src="https://user-images.githubusercontent.com/103919739/169814475-500694e4-b5e8-4677-859f-d71431be928a.png"  width="400" height="300"/>  
 bottom에 position을 부여하지 않았음에도 mid보다 앞에 나옴  
 <br/>
-겹쳐있는 stacking context가 동일한 z-index를 갖는다면  
+같은 stacking context에 있는 겹쳐있는 요소들이 동일한 z-index를 갖는다면  
 
 ```css
 
@@ -117,7 +117,7 @@ bottom에 position을 부여하지 않았음에도 mid보다 앞에 나옴
 }
 ```
 <img src="https://user-images.githubusercontent.com/103919739/169815377-7779b1b7-301c-4b1e-88fe-bf06499b6f67.png"  width="400" height="300"/>  
-natural stacking order를 따르게 됨  
+역시나 natural stacking order를 따르게 됨  
 
 z축에서의 위치를 조절하기 위해서는 z-index값을 부여해야 함  
 ```css
