@@ -16,7 +16,7 @@
 <img src="https://user-images.githubusercontent.com/103919739/169807171-6667ed6d-f852-4d26-8c09-bb4b027444cf.png"  width="300" height="200"/>
 
 문제 1. z-index를 주지 않는다 -> 인풋에 가려짐  
-문제 2. z-index를  -> 상단 팝업을 뚫고 나옴  
+문제 2. z-index를 준다 -> 상단 팝업을 뚫고 나옴  
 
 ```css
 .inputWrapper {
