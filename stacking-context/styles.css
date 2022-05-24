@@ -14,14 +14,14 @@
     border: 1px solid black;
     height: 300px;
   }
-
+/* 
   .left {
     z-index: 0;
   }
 
   .right {
     z-index: 1;
-  }
+  } */
 
   .left-top, .left-mid, .left-bottom {
     position: relative;
@@ -42,7 +42,7 @@
     width: 200px;
     height: 100px;
     background-color: cadetblue;
-    z-index: 2;
+    z-index: 3;
   }
 
   .left-bottom {
@@ -55,7 +55,7 @@
 
   .right-mid {
     position: relative;
-    z-index: 10;
+    z-index: 2;
     width: 200px;
     height: 100px;
     background-color: blueviolet;
