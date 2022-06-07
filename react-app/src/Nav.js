@@ -1,10 +1,34 @@
 import { NavLink} from 'react-router-dom';
+import styled from 'styled-components';
+
+const Navigations = styled.nav`
+  height: 24px;
+  background-color: black;
+  & > ul {
+    display: flex;
+    padding: 0 5px;
+    height: 100%;
+    align-items: center;
+    & > li {
+      color: white;
+      & + li {
+        margin-left: .5em;
+      }
+      & > a {
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+`;
 
 function Nav() {
-  const activeStyle = { color: 'blue', fontWeight: 600 };
+  const activeStyle = { fontWeight: 800 };
 
   return (
-    <nav>
+    <Navigations>
       <ul>
         <li>
           <NavLink to="scroll" style={({isActive}) => isActive ? activeStyle : undefined}>Scroll</NavLink>
@@ -13,7 +37,7 @@ function Nav() {
           <NavLink to="input" style={({isActive}) => isActive ? activeStyle : undefined}>Input</NavLink>
         </li>
       </ul>
-    </nav>
+    </Navigations>
   );
 }
 
