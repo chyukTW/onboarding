@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -7,7 +7,10 @@ const Wrapper = styled.div`
   background-color: tomato;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  & > h1 {
+    font-size: 36px;
+    margin-bottom: 80vh;
+  }
 `;
 
 const Box = styled.div`
@@ -107,13 +110,45 @@ function Box3(){
   )
 }
 
-function Scroll() {
+const Box4 = forwardRef((prop, ref) => {
   return (
-    <Wrapper>
+    <Box ref={ref}>
+      intersectionObserver
+    </Box>
+  )
+});
+
+function Scroll() {
+  const rootRef = useRef(null);
+  const targetRef = useRef(null);
+
+  const options = {
+      root: null,
+      rootMargin: '20px 0px',
+      threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    }
+
+  const observer = new IntersectionObserver(entiries => {
+      entiries.forEach(entry => {
+        if(entry.intersectionRatio > 0){
+          targetRef.current.style.width = 70 * entry.intersectionRatio + '%';
+        }
+      })
+    }, options);
+
+  useEffect(()=> {
+    observer.observe(targetRef.current);
+    return () => observer.disconnect();
+  })
+
+  return (
+    <Wrapper ref={rootRef}>
+      <h1>Scroll the page</h1>
       <Box1 />
       <Box2 delay={300}/>
       <Box2 delay={16.66}/>
       <Box3 />
+      <Box4 ref={targetRef}/>
     </Wrapper>
   );
 }
