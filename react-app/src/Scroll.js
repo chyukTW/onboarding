@@ -110,7 +110,7 @@ function Box3(){
   )
 }
 
-const Box4 = forwardRef((prop, ref) => {
+const Box4 = forwardRef((_, ref) => {
   return (
     <Box ref={ref}>
       intersectionObserver
@@ -128,8 +128,8 @@ function Scroll() {
       threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     }
 
-  const observer = new IntersectionObserver(entiries => {
-      entiries.forEach(entry => {
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if(entry.intersectionRatio > 0){
           targetRef.current.style.width = 70 * entry.intersectionRatio + '%';
         }
