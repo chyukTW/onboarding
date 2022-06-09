@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/onboarding/react-app/static/js/main.14a67c86.js",
-    "index.html": "/onboarding/react-app/index.html",
-    "main.14a67c86.js.map": "/onboarding/react-app/static/js/main.14a67c86.js.map"
+    "main.js": "/onboarding/static/js/main.e4dd3f13.js",
+    "index.html": "/onboarding/index.html",
+    "main.e4dd3f13.js.map": "/onboarding/static/js/main.e4dd3f13.js.map"
   },
   "entrypoints": [
-    "static/js/main.14a67c86.js"
+    "static/js/main.e4dd3f13.js"
   ]
 }
