@@ -10,7 +10,7 @@ import GlobalStyle from './Styles/GlobalStyle';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <GlobalStyle />
     <Nav />
     <Routes>
