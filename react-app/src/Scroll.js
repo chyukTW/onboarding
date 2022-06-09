@@ -11,6 +11,9 @@ const Wrapper = styled.div`
     font-size: 36px;
     margin-bottom: 80vh;
   }
+  & > div:last-child {
+    align-self: center;
+  }
 `;
 
 const Box = styled.div`
@@ -21,6 +24,18 @@ const Box = styled.div`
   height: 50px;
   background-color: mintcream;
   margin-bottom: 5px;
+`
+
+const Intersection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 5px;
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  color: white;
 `
 
 function Box1(){
@@ -112,9 +127,9 @@ function Box3(){
 
 const Box4 = forwardRef((_, ref) => {
   return (
-    <Box ref={ref}>
+    <Intersection ref={ref}>
       intersectionObserver
-    </Box>
+    </Intersection>
   )
 });
 
@@ -124,14 +139,14 @@ function Scroll() {
 
   const options = {
       root: null,
-      rootMargin: '20px 0px',
+      rootMargin: '0px',
       threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     }
 
   const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if(entry.intersectionRatio > 0){
-          targetRef.current.style.width = 70 * entry.intersectionRatio + '%';
+          targetRef.current.style.transform = `rotate(${360 * entry.intersectionRatio}deg)`;
         }
       })
     }, options);
