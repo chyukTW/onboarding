@@ -7,13 +7,13 @@
 
 ## **디바운스**
 
-바운싱 현상이란 기계 스위치들의 접점이 붙거나 떨어지는 시점에 의도치 않게 스위치가 여러번 ON/OFF되는 현상을 말합니다. 이러한 현상을 방지하기 위한 기법을 디바운싱(Debouncing)이라고 하는데요. 이벤트를 그룹화시켜 특정 시간이 지난 후에 하나의 이벤트만 발생하도록 하는 기술입니다. 연속적으로 호출되는 함수 중 마지막 또는 처음에 호출되는 함수만을 실행시켜 디바운스를 구현할 수 있습니다.
+바운싱 현상이란 기계 스위치들의 접점이 붙거나 떨어지는 시점에 의도치 않게 스위치가 여러번 ON/OFF되는 현상을 말하는데 이를 방지하기 위한 기법을 디바운싱(Debouncing)이라고 합니다. 이벤트를 그룹화시켜 특정 시간이 지난 후에 하나의 이벤트만 발생하도록 하는 기술입니다. 연속적으로 호출되는 함수 중 마지막 또는 처음에 호출되는 함수만을 실행시켜 디바운스를 구현할 수 있습니다.
 
 예시 1. 타이핑을 하다가 일정 시간 멈추었을 때 검색어를 모두 입력했다고 판단하고 검색 결과 출력
 
 예시 2. 유저가 브라우저의 크기를 조절하다가 일정 시간 조작을 하지 않았을 때 이벤트 실행
 
-예시 3. React에서 setTimeout을 활용한 debounce를 구현
+예제. React에서 setTimeout을 활용한 debounce를 구현
 
 순서:
 
@@ -66,7 +66,7 @@ export default Input;
 
 예시 1. 무한 스크롤 화면에서 유저가 너무 빠르게 스크롤을 내리면 과도한 API 요청이 발생할 수 있음 → 쓰로틀을 활용하여 너무 빈번하게 함수가 실행되지 않도록 최적화
 
-예시 2. React에서 setTimeout을 활용한 throttle 구현
+예제. React에서 setTimeout을 활용한 throttle 구현
 
 순서:
 
@@ -109,7 +109,7 @@ function ThrottleBox({delay}){
 }
 ```
 
-**requestAnimationFrame API를 활용한 쓰로틀링 구현**
+## requestAnimationFrame API를 활용한 쓰로틀링 구현
 
 오늘날 대부분의 장치는 화면을 초당 60회 갱신합니다. 브라우저 환경에서 애니메이션이 작동하거나 사용자가 스크롤하여 화면이 이동하면 장치의 화면 주사율에 맞추어 화면이 그려져야 합니다. 각각의 프레임은 16.6ms(1초/60) 정도의 budget을 갖고 있지만, 브라우저가 기본적으로 수행해야 하는 작업 때문에 pixel pipeline은 10ms 이내에 완료되어야 합니다. 만약 이 조건을 달성하지 못하면 프레임률이 떨어지고 사용자 경험에 부정적 영향을 끼칠 수 있습니다.
 
@@ -126,7 +126,8 @@ Pixel Pipeline 예시 (CSS 속성에 따라 중간 과정이 생략될 수 있�
 
 ![image](https://user-images.githubusercontent.com/103919739/173189308-6caf8b5b-4011-4fba-82b0-7665aec0c7a4.png)  
 
-예시 3. requsetAnimation 활용한 throttle 예제
+예제. requsetAnimation 활용한 throttle 예제
+<br />
 
 순서:
 
@@ -176,6 +177,6 @@ function ThrottleBox(){
 
 ## 참고
 
-https://web.dev/rendering-performance/
-https://jbee.io/web/optimize-scroll-event/
-https://blog.risingstack.com/writing-a-javascript-framework-execution-timing-beyond-settimeout/
+https://web.dev/rendering-performance/  
+https://jbee.io/web/optimize-scroll-event/  
+https://blog.risingstack.com/writing-a-javascript-framework-execution-timing-beyond-settimeout/  
