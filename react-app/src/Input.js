@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 function Input() {
   const [ textInput, setTextInput] = useState('');
-  const [ 복잡한데이터, 셋복잡한데이터 ] = useState('');
+  const [ 복잡한데이터, 복잡한데이터저장하기 ] = useState('');
 
   const handleChange = (value) => {
     setTextInput(value);
@@ -25,9 +25,11 @@ function Input() {
     if(textInput){
       const debounce = setTimeout(()=> {
         const 엄청복잡하고거대한함수 = (value) => '복잡한 로직으로 가공된 ' + value;
-        셋복잡한데이터(엄청복잡하고거대한함수(textInput));
+        복잡한데이터저장하기(엄청복잡하고거대한함수(textInput));
       }, 1000);
-      return ()=> clearTimeout(debounce);
+      return ()=> {
+        clearTimeout(debounce);
+      };
     }
   }, [textInput])
   

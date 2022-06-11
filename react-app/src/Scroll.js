@@ -99,18 +99,18 @@ function Box3(){
   useEffect(()=> {
     const box = boxRef.current;
     let lastScrollY = 0;
-    let ticking = false;
+    let isQueuing = false;
     
     const handleScroll = () => {
-      lastScrollY = window.pageYOffset;
-      if(!ticking){
-        window.requestAnimationFrame(()=> {
-          (()=> box.style.width = lastScrollY + 100 + 'px')();
-          ticking = false;
-        })
+      if(isQueuing) return
 
-        ticking = true;
-      }
+      isQueuing = true;
+      lastScrollY = window.pageYOffset;
+      
+      return requestAnimationFrame(()=> {
+        (()=> box.style.width = lastScrollY + 100 + 'px')();
+        isQueuing = false;
+      })
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -161,7 +161,7 @@ function Scroll() {
       <h1>Scroll the page</h1>
       <Box1 />
       <Box2 delay={300}/>
-      <Box2 delay={16.66}/>
+      <Box2 delay={10}/>
       <Box3 />
       <Box4 ref={targetRef}/>
     </Wrapper>
