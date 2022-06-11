@@ -8,6 +8,7 @@
 📁 howToClearMock - Mock 정리하기(clearMock, resetMock, restoreMock)  
 📁 howToMock - Jest로 Mocking하는 방법  
 📁 react-app - 실습용 리액트 앱    
+📁 scroll-optimization - 스크롤 이벤트 최적화    
 📁 stacking-context - CSS stacking-context  
 📁 todolist-v2 - graphQL 서버와 통신하는 예제  
 📁 todolist - Apollo Client의 local state를 활용한 예제  
