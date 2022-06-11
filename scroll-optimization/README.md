@@ -1,3 +1,10 @@
+# 스크롤 이벤트 최적화 관련
+
+- Debounce
+- Throttle
+- requestAnimationFrame API
+
+
 ## **디바운스**
 
 바운싱 현상이란 기계 스위치들의 접점이 붙거나 떨어지는 시점에 의도치 않게 스위치가 여러번 ON/OFF되는 현상을 말합니다. 이러한 현상을 방지하기 위한 기법을 디바운싱(Debouncing)이라고 하는데요. 이벤트를 그룹화시켜 특정 시간이 지난 후에 하나의 이벤트만 발생하도록 하는 기술입니다. 연속적으로 호출되는 함수 중 마지막 또는 처음에 호출되는 함수만을 실행시켜 디바운스를 구현할 수 있습니다.
@@ -45,7 +52,8 @@ function Input() {
 export default Input;
 ```
 
-*GIF 추가 ??*
+![Jun-11-2022 22-02-48](https://user-images.githubusercontent.com/103919739/173189334-74975891-2d6a-435c-bfde-a7bc77a8231a.gif)
+
 
 ## **쓰로틀**
 
@@ -107,7 +115,8 @@ function ThrottleBox({delay}){
 
 Pixel Pipeline 예시 (CSS 속성에 따라 중간 과정이 생략될 수 있음)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/debd55f8-7de3-447c-b20f-0f945f63774b/Untitled.png)
+![image](https://user-images.githubusercontent.com/103919739/173189300-953c2651-3fcb-45c9-a256-441236877eaf.png)  
+
 
 쓰로틀링을 적용하면서도 최대한 부드러운 애니메이션을 구현해야 하는 상황을 가정해볼 수 있습니다. 해당 애니메이션이 스크롤 이벤트에 따라 발생한다면 화면 주사율에 따라 브라우저가 렌더링하는 능력에 맞추어 함수가 실행되도록 해야 합니다. setTimeout의 delay를 10ms 이하로 준다면 어떨까요?
 
@@ -115,7 +124,7 @@ Pixel Pipeline 예시 (CSS 속성에 따라 중간 과정이 생략될 수 있�
 
 이런 경우에 활용할 수 있는 requestAnimationFrame API가 있습니다. 줄여서 raf은 리페인트 이전에 실행할 콜백을 인자로 받습니다. 애니메이션이 실행되기 위한 조건이 되면 raf은 인자로 전달받은 콜백을 repaint 전에 실행하도록 브라우저에 요청합니다. raf API의 로직도 setTimeout과 마찬가지로 비동기로 실행되지만, task queue가 아닌 animaiton frame에서 처리되기 때문에 브라우저 렌더링 퍼포먼스에 최적화된 애니메이션을 구현할 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c257414-7cf3-4d84-b871-a5d6cdcdc8a8/Untitled.png)
+![image](https://user-images.githubusercontent.com/103919739/173189308-6caf8b5b-4011-4fba-82b0-7665aec0c7a4.png)  
 
 예시 3. requsetAnimation 활용한 throttle 예제
 
@@ -164,3 +173,9 @@ function ThrottleBox(){
   )
 }
 ```
+
+## 참고
+
+https://web.dev/rendering-performance/
+https://jbee.io/web/optimize-scroll-event/
+https://blog.risingstack.com/writing-a-javascript-framework-execution-timing-beyond-settimeout/
