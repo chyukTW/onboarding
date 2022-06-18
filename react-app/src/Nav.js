@@ -36,6 +36,9 @@ function Nav() {
         <li>
           <NavLink to="input" style={({isActive}) => isActive ? activeStyle : undefined}>Input</NavLink>
         </li>
+        <li>
+          <NavLink to="intersection" style={({isActive}) => isActive ? activeStyle : undefined}>I/O</NavLink>
+        </li>
       </ul>
     </Navigations>
   );
