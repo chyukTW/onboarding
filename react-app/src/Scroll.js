@@ -27,12 +27,9 @@ function Box1(){
   const boxRef = useRef(null)
 
   useEffect(()=> {
-    const box = boxRef.current;
-    
-    const handleScroll = () => {
-      box.style.width = window.pageYOffset + 100 + 'px';
-    };
-
+    const box = boxRef.current;  
+    const handleScroll = () => box.style.width = window.pageYOffset + 100 + 'px';
+  
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
@@ -47,7 +44,7 @@ function Box1(){
 
 function Box2({delay}){
   const timeRef = useRef(0);
-  const boxRef = useRef(null)
+  const boxRef = useRef(null);
 
   const throttle = (func, delay) => {
     if(timeRef.current) return;
@@ -59,11 +56,7 @@ function Box2({delay}){
   
   useEffect(()=> {
     const box = boxRef.current;
-    
-    const handleScroll = () => {
-      box.style.width = window.pageYOffset + 100 + 'px';
-    };
-
+    const handleScroll = () => box.style.width = window.pageYOffset + 100 + 'px';
     const throttleHandleScroll = () => throttle(handleScroll, delay);
 
     window.addEventListener('scroll', throttleHandleScroll);
@@ -99,7 +92,6 @@ function Box3(){
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   })
 

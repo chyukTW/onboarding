@@ -12,7 +12,7 @@ const Navigations = styled.nav`
     & > li {
       color: white;
       & + li {
-        margin-left: .5em;
+        margin-left: 1em;
       }
       & > a {
         font-size: 16px;
@@ -25,19 +25,22 @@ const Navigations = styled.nav`
 `;
 
 function Nav() {
-  const activeStyle = { fontWeight: 800 };
+  const activeStyle = { fontWeight: 800, color: 'lime' };
 
   return (
     <Navigations>
       <ul>
         <li>
-          <NavLink to="scroll" style={({isActive}) => isActive ? activeStyle : undefined}>Scroll</NavLink>
+          <NavLink to="scroll" style={({isActive}) => isActive ? activeStyle : undefined}>ScrollEvents</NavLink>
         </li>
         <li>
-          <NavLink to="input" style={({isActive}) => isActive ? activeStyle : undefined}>Input</NavLink>
+          <NavLink to="input" style={({isActive}) => isActive ? activeStyle : undefined}>Debounce</NavLink>
         </li>
         <li>
-          <NavLink to="intersection" style={({isActive}) => isActive ? activeStyle : undefined}>I/O</NavLink>
+          <NavLink to="debounce" style={({isActive}) => isActive ? activeStyle : undefined}>무한스크롤(1)</NavLink>
+        </li>
+        <li>
+          <NavLink to="intersection" style={({isActive}) => isActive ? activeStyle : undefined}>무한스크롤(2)</NavLink>
         </li>
       </ul>
     </Navigations>

@@ -25,28 +25,6 @@ const Box = styled.div`
   background-color: skyblue;
   color: white;
 `
-const FetchMore = ({ setData }) => {
-  const fetchMoreTrigger = useRef(null);
-  
-  useEffect(() => {
-    const fetchMoreObserver = new IntersectionObserver(([{ isIntersecting }]) => {
-      if (!isIntersecting) return
-      setData();
-    });
-
-    fetchMoreObserver.observe(fetchMoreTrigger.current);
-
-    return () => fetchMoreObserver.disconnect();
-  }, [setData]);
-
-  return (
-    <div
-      ref={fetchMoreTrigger}
-    />
-  );
-};
-
-
 const DataUnit = ({id}) => {
   return (
     <Box>
@@ -56,19 +34,41 @@ const DataUnit = ({id}) => {
 };
 
 function Intersection() {
+  const ref = useRef(null);
+  const timer = useRef(null)
   const [data, setData] = useState([]);
 
-  const handleData = () => setData(prev => ([...prev, new Date()]));
+  const debounce = (fn, delay) => {
+    return (...args) => {
+      if(timer.current) clearTimeout(timer.current);
+      timer.current = setTimeout(()=> fn(...args), delay);
+    }
+  }
+  
+  const handleScroll = () => {
+    const target = ref.current;
+    if(!target) return 
+
+    const isEndpoint = window.scrollY + window.innerHeight >= target.offsetHeight;
+    
+    if (isEndpoint) setData(prev => {
+      return [...prev, new Date()]
+    });
+  }
+
+  useEffect(()=> { 
+    window.addEventListener('scroll', debounce(handleScroll, 1000))    
+    return () => window.removeEventListener('scroll', debounce(handleScroll, 1000))
+  }, [data])
 
   return (
-    <Wrapper>
-      <h1>무한스크롤 with IntersectionObserver</h1>
+    <Wrapper ref={ref}>
+      <h1>무한스크롤 with Debounce</h1>
       <div>
         {data && data.map((_, i)=> {
           return <DataUnit key={i} id={i}/>
         })}
       </div>
-      <FetchMore setData={handleData}/>
     </Wrapper>    
   );
 }

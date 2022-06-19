@@ -17,20 +17,17 @@ function Input() {
   const [ textInput, setTextInput] = useState('');
   const [ 복잡한데이터, 복잡한데이터저장하기 ] = useState('');
 
-  const handleChange = (value) => {
-    setTextInput(value);
-  };
+  const handleChange = (value) => setTextInput(value);
 
   useEffect(()=>{
-    if(textInput){
-      const debounce = setTimeout(()=> {
-        const 엄청복잡하고거대한함수 = (value) => '복잡한 로직으로 가공된 ' + value;
-        복잡한데이터저장하기(엄청복잡하고거대한함수(textInput));
-      }, 1000);
-      return ()=> {
-        clearTimeout(debounce);
-      };
-    }
+    if(!textInput) return
+
+    const debounce = setTimeout(()=> {
+      const 엄청복잡하고거대한함수 = (value) => '복잡한 로직으로 가공된 ' + value;
+      복잡한데이터저장하기(엄청복잡하고거대한함수(textInput));
+    }, 1000);
+    
+    return ()=> clearTimeout(debounce);
   }, [textInput])
   
   return (
