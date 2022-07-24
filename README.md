@@ -1,4 +1,4 @@
-# 온보딩 기간 중 학습한 내용을 기록하는 공간입니다.
+# 온보딩 기간 중 학습한 내용을 기록하는 공간입니다. 
 
 ## Contents
 
@@ -13,5 +13,5 @@
 📁 todolist-v2 - graphQL 서버와 통신하는 예제  
 📁 todolist - Apollo Client의 local state를 활용한 예제  
 📁 types-test-study - 프론트엔드 테스트   
-📁 webSocket-study - About webSocket, HTTP Polling, Long-Polling...  
+📁 webSocket-study - About webSocket, HTTP Polling, Long-Polling  
 
