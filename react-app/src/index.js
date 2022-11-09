@@ -8,6 +8,7 @@ import Scroll from './Scroll';
 import Input from './Input';
 import Debounce from './Debounce';
 import Intersection from './Intersection';
+import Statistics from './Statistics';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -16,7 +17,7 @@ root.render(
     <GlobalStyle />
     <Nav />
     <Routes>
-      <Route path='/' element={<Scroll/>} />
+      <Route path='/' element={<Statistics/>} />
       <Route path='/scroll' element={<Scroll/>} />
       <Route path='/input' element={<Input/>} />
       <Route path='/debounce' element={<Debounce/>} />
