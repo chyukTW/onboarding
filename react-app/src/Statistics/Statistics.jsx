@@ -1,4 +1,4 @@
-import HistoryTab from "../HistoryTab";
+import HistoryProvider from "../HistoryProvider";
 import A from "./A";
 import B from "./B";
 import C from "./C";
@@ -12,7 +12,7 @@ const TABS = {
 };
 
 const Statistics = () => {
-  return <HistoryTab tabs={TABS}/>
+  return <HistoryProvider contents={TABS}/>
 }
 
 export default Statistics;
