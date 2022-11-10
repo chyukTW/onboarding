@@ -12,7 +12,7 @@ const TABS = {
 };
 
 const Statistics = () => {
-  return <HistoryProvider contents={TABS}/>
+  return <HistoryProvider contents={TABS} hasTab={true}/>
 }
 
 export default Statistics;

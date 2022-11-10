@@ -6,9 +6,13 @@ export const HistoryContext = createContext({
   changeContent: () => undefined,
 })
 
-const HistoryRoot = ({ children, titles }) => {
-  const initialContent = titles[0];
+const HistoryRoot = ({ children, hasTab }) => {
   const {location: {pathname}, history: {state}} = window;
+
+  const grandChildren = children.props.children;
+  const titles = grandChildren.map(({props}) => props.title);
+  const initialContent = titles[0];
+
   const [content, setContent] = useState(state?.title ?? initialContent);
 
   const changeContent = (title) => {
@@ -31,11 +35,11 @@ const HistoryRoot = ({ children, titles }) => {
 
   return (
     <HistoryContext.Provider value={{ title: content, changeContent }}>
-      <Header>
-        {titles.map((title, i)=> 
-          (<li key={i} onClick={(e) => changeContent(e.target.innerText)}>{title}</li>)
-        )}
-      </Header>
+      {hasTab && (
+        <Tabs>
+          {titles.map((title, i) => (<li key={i} onClick={(e) => changeContent(e.target.innerText)}>{title}</li>))}
+        </Tabs> 
+      )}
       {children}
     </HistoryContext.Provider>
   )
@@ -43,7 +47,7 @@ const HistoryRoot = ({ children, titles }) => {
 
 export default HistoryRoot;
 
-const Header = styled.ul`
+const Tabs = styled.ul`
   display: flex;
   align-items: center;
   background-color: tomato;
