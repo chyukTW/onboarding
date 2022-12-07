@@ -13,5 +13,5 @@
 📁 todolist-v2 - graphQL 서버와 통신하는 예제  
 📁 todolist - Apollo Client의 local state를 활용한 예제  
 📁 types-test-study - 프론트엔드 테스트   
-📁 webSocket-study - About webSocket, HTTP Polling, Long-Polling  
+📁 webSocket-study - About webSocket, HTTP Polling, Long-Polling
 
